@@ -10,30 +10,36 @@ export default class Category extends Component{
             //
         }
     }
+
+    selectCategory(){
+        console.log("select")
+    }
     
     render(){
         return(
             <View style={{ flexDirection: 'row'}}>
-                <TouchableOpacity style={[styles.button, styles.buttonUpText]} onPress={() => this.onMark("plus")}>
-                    <Text style={styles.buttonText}> + </Text>
+                <TouchableOpacity style={[styles.buttonCategory, styles.textCategory]} onPress={() => this.selectCategory("plus")}>
+                    <Text style={styles.buttonText}> 食費 </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.button, styles.buttonMinus]} onPress={() => this.onMark("minus")}>
-                    <Text style={styles.buttonText}> - </Text>
+                <TouchableOpacity style={[styles.buttonCategory, styles.textCategory]} onPress={() => this.selectCategory("minus")}>
+                    <Text style={styles.buttonText}> 遊費 </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={[styles.button, styles.buttonTimes]} onPress={() => this.onMark("times")}>
-                    <Text style={styles.buttonText}> x </Text>
+                <TouchableOpacity style={[styles.buttonCategory, styles.textCategory]} onPress={() => this.selectCategory("times")}>
+                    <Text style={styles.buttonText}> 交通 </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.button, styles.buttonDivide]} onPress={() => this.onMark("divide")}>
-                    <Text style={styles.buttonText}> ÷ </Text>
-                </TouchableOpacity>
+
                 
-                <TouchableOpacity style={[styles.button, styles.buttonEqual]} onPress={() => this.onEqual()} >
-                    <Text style={styles.buttonText}> = </Text>
+                <TouchableOpacity style={[styles.buttonCategory, styles.textCategory]} onPress={() => this.selectCategory()} >
+                    <Text style={styles.buttonText}> 光熱 </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={[styles.button, styles.buttonReset]} onPress={() => this.onReset()}>
-                    <Text style={[styles.buttonResetText]}>リセット</Text>
+                <TouchableOpacity style={[styles.buttonCategory, styles.textCategory]} onPress={() => this.selectCategory("divide")}>
+                    <Text style={styles.buttonText}> 固定 </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={[styles.buttonCategory, styles.textCategory]} onPress={() => this.selectCategory("divide")}>
+                    <Text style={styles.buttonText}> 雑費 </Text>
                 </TouchableOpacity>
             </View>
         )

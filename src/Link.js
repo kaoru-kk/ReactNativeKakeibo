@@ -10,18 +10,18 @@ export default class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      modalCaluclate: false,
+      modalCalculate: false,
       modalCamera: false,
       moneys: []
     }
   }
 
   CalculateOn(){
-    this.setState({ modalCaluclate: true})
+    this.setState({ modalCalculate: true})
   }
 
   CalculateOff(){
-    this.setState({ modalCaluclate: false })
+    this.setState({ modalCalculate: false })
   }
   
   CameraOn(){
@@ -34,34 +34,59 @@ export default class App extends Component {
 
   render() {
     return (
-        <View>
-            <Modal
-            visible={this.state.modalCaluclate}
-            animationType={"fade"}
-            onRequestClose={() => this.CalculateOff()}
-            >
-            <Calculate />
-
-            <Category />
-                
-            <Button
-                onPress={() => this.CalculateOff()}
-                title="計算機を閉じる"
-            />
-
-            </Modal>
-
-            <Modal
-                visible={this.state.modalCamera}
-                animationType={"fade"}
-                onRequestClose={() => this.CameraOff()}>
-            <Camera />
-                <Button 
-                onPress={() => this.CameraOff()}
-                title="カメラを閉じる"
-                />
-            </Modal>
+      <View>
+        <View style={styles.countArea}>
         </View>
+        
+        <Button
+          onPress={() => this.CalculateOn()}
+          title="計算機"
+        />
+
+        <Text>
+          {
+        this.state.moneys.map( money => {
+              return (
+              <Text className="task" key={ money.id }>
+                { money.price } 
+              </Text>
+              )
+          })
+          }
+        </Text>
+
+        <Button
+        onPress={() => this.CameraOn()}
+        title="Camera"
+        />
+
+        <Modal
+        visible={this.state.modalCalculate}
+        animationType={"fade"}
+        onRequestClose={() => this.CalculateOff()}
+        >
+          <Calculate />
+
+          <Category />
+          
+          <Button
+              onPress={() => this.CalculateOff()}
+              title="計算機を閉じる"
+          />
+
+        </Modal>
+
+        <Modal
+          visible={this.state.modalCamera}
+          animationType={"fade"}
+          onRequestClose={() => this.CameraOff()}>
+          <Camera/>
+          <Button 
+            onPress={() => this.CameraOff()}
+            title="カメラを閉じる"
+            />
+        </Modal>
+      </View>
     );
   };
 };

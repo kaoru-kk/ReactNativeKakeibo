@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Component } from 'react';
 import {View, Text, Modal} from "react-native";
 import { Camera } from 'expo-camera'; 
-
 import { Button, Container, Icon,  Root } from "native-base";
 import * as Permissions from "expo-permissions";
 import styles from "./Style";

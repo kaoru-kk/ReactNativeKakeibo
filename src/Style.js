@@ -95,6 +95,19 @@ const styles = StyleSheet.create({
       fontSize:20,
       marginTop: 810,
       marginLeft: 32
+    },
+    buttonCategory: {
+      marginTop: 5,
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: 70,
+      height: 50,
+      borderRadius: 5,
+      borderWidth: 1,
+      borderColor: '#fff'
+    },
+    textCategory: {
+      backgroundColor: "orange"
     }
   });
 
