@@ -3,7 +3,6 @@ import styles from "./Style"
 import { View, Button, Modal, Text} from 'react-native';
 import Calculate from "./Calculate";
 import Camera from "./Camera";
-import Category from "./Category";
 
 
 export default class App extends Component {
@@ -12,7 +11,6 @@ export default class App extends Component {
     this.state = {
       modalCalculate: false,
       modalCamera: false,
-      moneys: []
     }
   }
 
@@ -40,56 +38,44 @@ export default class App extends Component {
         
         <Button
           onPress={() => this.CalculateOn()}
-          title="計算機"
+          title="買ったものを入力する"
         />
-
-        <Text>
-          {
-        this.state.moneys.map( money => {
-              return (
-              <Text className="task" key={ money.id }>
-                { money.price } 
-              </Text>
-              )
-          })
-          }
-        </Text>
-
         <Button
         onPress={() => this.CameraOn()}
-        title="Camera"
+        title="レシートを撮影する"
         />
 
+{/* 計算機用モーダル */}
         <Modal
         visible={this.state.modalCalculate}
         animationType={"fade"}
         onRequestClose={() => this.CalculateOff()}
         >
           <Calculate />
-
-          <Category />
           
           <Button
               onPress={() => this.CalculateOff()}
-              title="計算機を閉じる"
+              title="閉じる"
           />
 
         </Modal>
 
+
+  {/* カメラ用モーダル */}
         <Modal
           visible={this.state.modalCamera}
           animationType={"fade"}
           onRequestClose={() => this.CameraOff()}>
+
           <Camera/>
+
           <Button 
             onPress={() => this.CameraOff()}
-            title="カメラを閉じる"
+            title="閉じる"
             />
         </Modal>
       </View>
     );
   };
 };
-today = new Date;
-console.log(today.getFullYear() + "/" + (today.getMonth()+1) + "/" + today.getDate());
 

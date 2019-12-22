@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     },
     buttonReset: {
       borderColor: '#AFADAD',
-      marginBottom: 200
+      marginBottom: 50
     },
     buttonResetText: {
       color: '#000',
@@ -108,7 +108,29 @@ const styles = StyleSheet.create({
     },
     textCategory: {
       backgroundColor: "orange"
-    }
+    },
+    submitButton: {
+      backgroundColor: 'grey',
+      fontWeight: "bold",
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'row',
+      width: 90,
+      height: 40,
+      marginTop: 40,
+      marginBottom:40,
+      borderRadius: 5,
+      borderWidth: 1,
+      borderColor: '#fff'
+    },
+    container: { 
+      flex: 1,
+      padding: 16,
+      paddingTop: 30,
+      backgroundColor: '#fff' 
+    },
+    head: { height: 40, backgroundColor: '#f1f8ff' },
+    text: { margin: 6 }
   });
 
   export default (styles);

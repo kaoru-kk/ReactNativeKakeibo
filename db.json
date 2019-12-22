@@ -1,13 +1,25 @@
 {
-    "moneys": [
+  "moneys": [
     {
-        "id": 1,
-        "price": 4000,
-        "category": "食費"
-    }, {
-        "id": 2,
-        "price": 333333,
-        "category": "交際費"
+      "productName": "Wwww",
+      "category": "食費",
+      "price": 6666,
+      "date": "2019/12/23",
+      "id": 1
+    },
+    {
+      "productName": "Uoo",
+      "category": "食費",
+      "price": 66,
+      "date": "2019/12/23",
+      "id": 2
+    },
+    {
+      "productName": "",
+      "category": "食費",
+      "price": 2222,
+      "date": "2019/12/23",
+      "id": 3
     }
-    ]
+  ]
 }
