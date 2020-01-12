@@ -30,31 +30,43 @@ export default class App extends Component {
       measurementId: "G-VK7QLYLT6N"
     };
 
-    const firebaseApp =  firebase.initializeApp(config);
-    const db = firebaseApp.firestore();
-    let data = {
+    let firebaseApp =  firebase.initializeApp(config);
+    let db = firebaseApp.firestore();
+    const data = {
       name: 'Los Angeles',
       state: 'CA',
       country: 'USA'
     };
     
     // Add a new document in collection "cities" with ID 'LA'
-    let setDoc = db.collection('cities').doc('LA').set(data);
+    let setDoc = db.collection('kakeibos').doc('kkkkk').set(data);
+
+    const aa = db.collection("kakeibos")
+    //kakeibosから複数券取得
+    let kaoru = aa.get()
+      .then(snap => {
+        if (snap.empty){
+          console.log(no);
+          return;
+        }
+        snap.forEach( doc => {
+          console.log(doc.id, "=>" , doc.data());
+        });
+      })
 
 
     firebase.auth().onAuthStateChanged(user => {
       if (user){
         console.log("login");
       } else {
-        console.log("logout");
+        console.log("logout1");
       }
     });
-
-    // this.getMoneys();
   }
 
 
   getMoneys(){
+
     fetch("https://kakeibo-a0ef8.firebaseio.com")  
     .then( response => response.json() )
     .then( json => { 
