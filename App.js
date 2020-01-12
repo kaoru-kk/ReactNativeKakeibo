@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import styles from "./src/Style"
+import firebase from "firebase";
 import { View, Button, Modal, Text, TouchableOpacity, ScrollView, TextInput} from 'react-native';
 import { Table, Row, Rows } from 'react-native-table-component';
 import Link from "./src/Link"
+import 'firebase/firestore';
 
 
 export default class App extends Component {
@@ -17,12 +19,43 @@ export default class App extends Component {
 
   //アプリを開くとdb.jsonのデータを取りに行く
   componentWillMount(){
-    this.getMoneys()
+    const config = {
+      apiKey: "AIzaSyCZzW8ErWsgysg7sorvmLlO8EwyW3T8DUk",
+      authDomain: "kakeibo-a0ef8.firebaseapp.com",
+      databaseURL: "https://kakeibo-a0ef8.firebaseio.com",
+      projectId: "kakeibo-a0ef8",
+      storageBucket: "kakeibo-a0ef8.appspot.com",
+      messagingSenderId: "661128524394",
+      appId: "1:661128524394:web:858835325c97ec340d5013",
+      measurementId: "G-VK7QLYLT6N"
+    };
+
+    const firebaseApp =  firebase.initializeApp(config);
+    const db = firebaseApp.firestore();
+    let data = {
+      name: 'Los Angeles',
+      state: 'CA',
+      country: 'USA'
+    };
+    
+    // Add a new document in collection "cities" with ID 'LA'
+    let setDoc = db.collection('cities').doc('LA').set(data);
+
+
+    firebase.auth().onAuthStateChanged(user => {
+      if (user){
+        console.log("login");
+      } else {
+        console.log("logout");
+      }
+    });
+
+    // this.getMoneys();
   }
 
 
   getMoneys(){
-    fetch("http://localhost:3001/moneys")  
+    fetch("https://kakeibo-a0ef8.firebaseio.com")  
     .then( response => response.json() )
     .then( json => { 
       this.setState({ moneys: json })
