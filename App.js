@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import styles from "./src/Style"
-import firebase from "firebase";
 import { View, Button, Modal, Text, TouchableOpacity, ScrollView, TextInput} from 'react-native';
 import { Table, Row, Rows } from 'react-native-table-component';
 import Link from "./src/Link"
-import 'firebase/firestore';
+import config, {db} from "./src/Api_key";
+import firebase from "firebase";
 
 
 export default class App extends Component {
@@ -17,43 +17,46 @@ export default class App extends Component {
     this.getMoneys = this.getMoneys.bind(this)
   }
 
-  //アプリを開くとdb.jsonのデータを取りに行く
+//アプリを開くとdb.jsonのデータを取りに行く
   componentWillMount(){
-    const config = {
-      apiKey: "AIzaSyCZzW8ErWsgysg7sorvmLlO8EwyW3T8DUk",
-      authDomain: "kakeibo-a0ef8.firebaseapp.com",
-      databaseURL: "https://kakeibo-a0ef8.firebaseio.com",
-      projectId: "kakeibo-a0ef8",
-      storageBucket: "kakeibo-a0ef8.appspot.com",
-      messagingSenderId: "661128524394",
-      appId: "1:661128524394:web:858835325c97ec340d5013",
-      measurementId: "G-VK7QLYLT6N"
-    };
-
-    let firebaseApp =  firebase.initializeApp(config);
-    let db = firebaseApp.firestore();
-    const data = {
-      name: 'Los Angeles',
-      state: 'CA',
-      country: 'USA'
-    };
+// データ保存用
+    // const data = {
+    //   productName: 'がてん',
+    //   price: 222,
+    //   category: '食費',
+    //   date: "2019-09-01"
+    // };
     
-    // Add a new document in collection "cities" with ID 'LA'
-    let setDoc = db.collection('kakeibos').doc('kkkkk').set(data);
+    // // Add a new document in collection "cities" with ID 'kkkk'
+    // let setDoc = db.collection('kakeibos').doc('u9u99').set(data);
 
-    const aa = db.collection("kakeibos")
+    const kakeiboTable = db.collection("kakeibos")
+    var index = 0
+    var arr1 = [];
+
     //kakeibosから複数券取得
-    let kaoru = aa.get()
+    let kaoru = kakeiboTable.get()
       .then(snap => {
         if (snap.empty){
           console.log(no);
           return;
         }
-        snap.forEach( doc => {
-          console.log(doc.id, "=>" , doc.data());
+        snap.forEach(function(doc) {
+          let aa = doc.data();
+          var arr2 = [];          
+          arr2[0] = aa["productName"]
+          
+          arr2[1] = aa["price"]
+          
+          arr2[2] = aa["category"]
+          
+          arr2[3] = aa["date"]
+          arr1[index] = arr2
+          index++
         });
-      })
-
+        //配列に入れれた！
+        console.log(arr1);
+      });
 
     firebase.auth().onAuthStateChanged(user => {
       if (user){
@@ -101,6 +104,10 @@ export default class App extends Component {
 
 
   render() {
+
+    const kakeiboTable = db.collection("kakeibos")
+
+
     return (
       <View>
         <Link />
@@ -128,7 +135,10 @@ export default class App extends Component {
             </View>
           ))}
       </ScrollView>
+      
+    <View>
 
+      </View>
       </View>
     );
   };
