@@ -15,33 +15,3 @@ Xcode(主にios用のアプリ開発）
 ②レシートを撮影し文字を認識　→　保存するページ
 　Google Cloud Vision Apiを用いて画像認識を可能にした。この機能によって使いやすさが向上している。
  
-## 立ち上げコマンド
-
-プロジェクト立ち上げのために以下の２つをインストールします。
-
-```
-$ brew install node
-$ brew install watchman
-```
-
-以下のコマンドでexpoのダウンロードを行います。
-```
-$ npm install expo-cli --g
-```
-
-
-次に、json-serverの立ち上げを以下コマンドで行います。
-(このコマンドはpackage.jsonのscripts部分に追記しています）
-```
-$ npm run json-server 
-```
-
-
-以下のコマンドでexpoを立ち上げます。
-
-```
-$ expo start 
-```
-
-読み込みが完了し、デベロッパーツールが立ち上がった後にターミナルで「i」を押すとiosのシュミレーターが立ち上がります。
-
